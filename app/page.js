@@ -1,5 +1,12 @@
 import Image from "next/image";
+import Nav from "./components/Nav";
+import Layout from "./components/Layout";
 
 export default function Home() {
-  return <p>home</p>;
+  return (
+    <Layout>
+      <Nav />
+      <p>home</p>
+    </Layout>
+  );
 }
