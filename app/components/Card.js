@@ -1,8 +1,17 @@
-import React from "react";
+"use client";
 
-const Card = ({ title, description, imageUrl }) => {
+import React from "react";
+import DeleteButton from "./DeleteButton";
+
+export default function Card({
+  id,
+  title,
+  description,
+  imageUrl,
+  onDeleteClick,
+}) {
   return (
-    <div className="border h-56 flex w-2/5 rounded overflow-hidden shadow-lg">
+    <div className="border border-stone-500 h-56 flex w-2/5 rounded overflow-hidden shadow-lg">
       {imageUrl && (
         <img
           className="w-48 max-w-full h-auto object-cover"
@@ -10,8 +19,9 @@ const Card = ({ title, description, imageUrl }) => {
           alt={title}
         />
       )}
-      <div className="flex-grow flex flex-col justify-between px-6 py-4">
-        <div>
+      <div className="flex-grow flex flex-col justify-start">
+        <DeleteButton id={id} onDeleteClick={onDeleteClick} />
+        <div className="p-1.5 mx-1">
           <div className="font-bold text-xl mb-2">{title}</div>
           <div className="overflow-y-auto h-32">
             <p className="text-gray-700 text-base">{description}</p>
@@ -20,6 +30,4 @@ const Card = ({ title, description, imageUrl }) => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}

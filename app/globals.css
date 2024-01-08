@@ -6,4 +6,9 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
+  background-color: #080808;
+}
+
+p, h1, div {
+  color: white;
 }

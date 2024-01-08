@@ -1,14 +1,14 @@
 import Layout from "../components/Layout";
-import UnfinishedMovies from "../components/UnfinishedMovies";
-import FinishedMovies from "../components/FinishedMovies";
+import WatchListMovies from "../components/WatchlistMovies";
+import CompletedMovies from "../components/CompletedMovies";
 import Nav from "../components/Nav";
 
 export default function Page() {
   return (
     <Layout>
       <Nav />
-      <UnfinishedMovies />
-      <FinishedMovies />
+      <WatchListMovies />
+      <CompletedMovies />
     </Layout>
   );
 }
