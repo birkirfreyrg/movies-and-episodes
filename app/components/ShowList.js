@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AddButtonCard from "./AddButtonCard";
 import Card from "./Card";
-import AddMovieForm from "./AddMovieForm";
+import AddMovieForm from "./AddCardForm";
 
 export default function ShowList({ data }) {
   const [updatedData, setupdatedData] = useState(data);

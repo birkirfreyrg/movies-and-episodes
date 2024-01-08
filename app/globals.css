@@ -6,9 +6,11 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  background-color: #080808;
+  background-color: #1e293b;
 }
 
-p, h1, div {
+p,
+h1,
+div {
   color: white;
 }
