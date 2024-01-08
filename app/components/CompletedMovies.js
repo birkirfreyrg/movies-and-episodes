@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Card from "./Card";
 import CardContainer from "./CardContainer";
 import AddButtonCard from "./AddButtonCard";
+import AddMovieForm from "./AddMovieForm";
 
 export default function CompletedMovies() {
   const completedMovies = [
@@ -53,9 +54,9 @@ export default function CompletedMovies() {
 
   const [completedMoviesArray, setCompletedMoviesArray] =
     useState(completedMovies);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const handleDeleteClick = (id) => {
-    // Implement deletion logic and update finishedMovies state
     const updatedMovies = completedMoviesArray.filter(
       (movie) => movie.id !== id
     );
@@ -63,8 +64,16 @@ export default function CompletedMovies() {
   };
 
   const handleAddButtonClick = () => {
-    // Implement logic for adding a new movie or any other action
-    console.log("Add button clicked!");
+    setShowAddForm(true);
+  };
+
+  const handleAddMovie = (newMovie) => {
+    setCompletedMoviesArray((prevMovies) => [...prevMovies, newMovie]);
+    setShowAddForm(false);
+  };
+
+  const handleCancelAdd = () => {
+    setShowAddForm(false);
   };
 
   const isEvenLength = completedMoviesArray.length % 2 === 0;
@@ -81,13 +90,22 @@ export default function CompletedMovies() {
           onDeleteClick={() => handleDeleteClick(movie.id)}
         />
       ))}
-      {console.log(isEvenLength)}
       {isEvenLength ? (
         <>
-          <AddButtonCard onClick={handleAddButtonClick} moveLeft />
+          <AddButtonCard onClick={handleAddButtonClick} />
+          <AddButtonCard additionalClassName="invisible " />
         </>
       ) : (
         <AddButtonCard onClick={handleAddButtonClick} />
+      )}
+
+      {showAddForm && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <AddMovieForm
+            onAddMovie={handleAddMovie}
+            onCancel={handleCancelAdd}
+          />
+        </div>
       )}
     </CardContainer>
   );
