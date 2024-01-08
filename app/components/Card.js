@@ -24,7 +24,7 @@ export default function Card({
         <div className="p-1.5 mx-1">
           <div className="font-bold text-xl mb-2">{title}</div>
           <div className="overflow-y-auto h-32">
-            <p className="text-gray-700 text-base">{description}</p>
+            <p className="text-gray-200 text-base">{description}</p>
           </div>
         </div>
       </div>
