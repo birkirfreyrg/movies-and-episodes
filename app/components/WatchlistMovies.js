@@ -1,7 +1,7 @@
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
 
-export default function WatchListMovies() {
+export default function WatchlistMovies() {
   const watchlistMovies = [
     {
       id: 1,
