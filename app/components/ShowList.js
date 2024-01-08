@@ -51,7 +51,7 @@ export default function ShowList({ data }) {
       )}
       {showAddForm && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <AddMovieForm onAddMovie={handleAddCard} onCancel={handleCancelAdd} />
+          <AddMovieForm onAddCard={handleAddCard} onCancel={handleCancelAdd} />
         </div>
       )}
     </>
