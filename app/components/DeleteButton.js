@@ -22,7 +22,7 @@ export default function DeleteButton({ id, onDeleteClick }) {
   return (
     <div className="flex justify-end">
       <button
-        className="absolute inline-block text-white-500 dark:text-white-400 hover:bg-gray-100 dark:hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2"
+        className="absolute inline-block text-white-500 dark:text-white-400 hover:bg-gray-100 dark:hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1"
         onClick={handleClick}
       >
         X

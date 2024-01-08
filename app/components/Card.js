@@ -22,7 +22,7 @@ export default function Card({
       <div className="flex-grow flex flex-col justify-start">
         <DeleteButton id={id} onDeleteClick={onDeleteClick} />
         <div className="p-1.5 mx-1">
-          <div className="font-bold text-xl mb-2">{title}</div>
+          <div className="font-bold text-xl mb-1">{title}</div>
           <div className="overflow-y-auto h-32">
             <p className="text-gray-200 text-base">{description}</p>
           </div>
