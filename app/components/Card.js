@@ -17,7 +17,6 @@ export default function Card({ id, title, description, imageUrl }) {
             />
           )}
           <div className="flex-grow flex flex-col justify-start">
-            <DeleteButton id={id} />
             <div className="p-1.5 mx-1">
               <div className="font-bold text-xl mb-1">{title}</div>
               <div className="overflow-y-auto h-32">

@@ -13,11 +13,14 @@ export default function DeleteButton({ id }) {
   };
 
   async function handleConfirmDelete() {
-    await fetch(`http://localhost:3000/api/movies?id=${id}`, {
+    const response = await fetch(`http://localhost:3000/api/movies?id=${id}`, {
       method: "DELETE",
     });
     setShowConfirmDelete(false);
-    router.refresh();
+    if (response.status == 200) {
+      router.push("/");
+      router.refresh();
+    }
   }
 
   const handleCancelDelete = () => {
@@ -25,12 +28,12 @@ export default function DeleteButton({ id }) {
   };
 
   return (
-    <div className="flex justify-end">
+    <div>
       <button
-        className="absolute inline-block text-white-500 dark:text-white-400 hover:bg-gray-100 dark:hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1"
+        className="bg-red-500 text-white font-bold w-24 h-10 rounded"
         onClick={handleClick}
       >
-        X
+        Delete
       </button>
 
       {showConfirmDelete && (
