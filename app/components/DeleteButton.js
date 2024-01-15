@@ -2,18 +2,23 @@
 
 import React, { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
+import { useRouter } from "next/navigation";
 
-export default function DeleteButton({ id, onDeleteClick }) {
+export default function DeleteButton({ id }) {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const router = useRouter();
 
   const handleClick = () => {
     setShowConfirmDelete(true);
   };
 
-  const handleConfirmDelete = () => {
-    onDeleteClick(id);
+  async function handleConfirmDelete() {
+    await fetch(`http://localhost:3000/api/movies?id=${id}`, {
+      method: "DELETE",
+    });
     setShowConfirmDelete(false);
-  };
+    router.refresh();
+  }
 
   const handleCancelDelete = () => {
     setShowConfirmDelete(false);

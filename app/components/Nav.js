@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function Nav() {
   const pathname = usePathname();
   const active =
-    "text-center block border border-white-500 rounded py-2 px-4 text-white";
+    "text-center block border-active border-white-500  py-2 px-4 text-white";
   const inactive =
-    "text-center block border border-stone-500 rounded hover:border-gray-200 text-white-500 py-2 px-4";
+    "text-center block border-stone hover:border-gray-200 text-white-500 py-2 px-4";
 
   return (
     <nav>

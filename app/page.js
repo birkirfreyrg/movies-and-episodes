@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Nav from "./components/Nav";
 import Layout from "./components/Layout";
+import AddItem from "./components/AddItem";
 
 export default function Home() {
   return (
     <Layout>
       <Nav />
-      <p>home</p>
+      <AddItem />
     </Layout>
   );
 }

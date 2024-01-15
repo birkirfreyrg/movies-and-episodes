@@ -6,11 +6,23 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  background-color: #1e293b;
+  background-color: #0f0f0f;
+}
+
+.color-background {
+  background-color: #0f0f0f;
 }
 
 p,
 h1,
 div {
   color: white;
+}
+
+.border-stone {
+  @apply border border-opacity-30 border-stone-500 rounded-md;
+}
+
+.border-active {
+  @apply border border-white rounded-md;
 }
