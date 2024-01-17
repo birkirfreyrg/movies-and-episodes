@@ -1,5 +1,5 @@
 import { mongooseConnect } from "@/app/lib/mongoose";
-import { Movie } from "@/app/models/Movie";
+import { TvShow } from "@/app/models/TvShow";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params: { id } }) {
@@ -7,18 +7,18 @@ export async function GET(request, { params: { id } }) {
     // connect to the DB
     await mongooseConnect();
     // get the data using the model
-    const movie = await Movie.findOne({ _id: id });
-    return NextResponse.json({ message: "Ok", data: movie }, { status: 200 });
+    const tvShow = await TvShow.findOne({ _id: id });
+    return NextResponse.json({ message: "Ok", data: tvShow }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
-      message: "Failed to fetch movie",
+      message: "Failed to fetch tv show",
       error,
       status: 500,
     });
   }
 }
 
-// Update/Editing a movie
+// Update/Editing a tv show
 export async function PUT(request, { params: { id } }) {
   try {
     // Get the data from the request
@@ -28,7 +28,7 @@ export async function PUT(request, { params: { id } }) {
       newImageUrl: imageUrl,
       newWatchStatus: watchStatus,
     } = await request.json();
-    const newMovie = {
+    const newTvShow = {
       title,
       description,
       imageUrl,
@@ -36,15 +36,15 @@ export async function PUT(request, { params: { id } }) {
     };
     // connect to the DB
     await mongooseConnect();
-    await Movie.findByIdAndUpdate(id, newMovie);
+    await TvShow.findByIdAndUpdate(id, newTvShow);
     return NextResponse.json(
-      { message: "Movie updated sucessfully", data: newMovie },
+      { message: "Tv Show updated sucessfully", data: newTvShow },
       { status: 201 }
     );
     // Use the Model to update
   } catch (error) {
     return NextResponse.json({
-      message: "Failed to fetch movies",
+      message: "Failed to fetch Tv Show",
       error,
       status: 500,
     });

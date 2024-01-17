@@ -9,8 +9,6 @@ export default function Page() {
     <Layout>
       <Nav />
       <InProgressTvShows />
-      <WatchlistTvShows />
-      <CompletedTvShows />
     </Layout>
   );
 }

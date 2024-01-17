@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import AddCardForm from "./AddCardForm";
+import { usePathname } from "next/navigation";
 
 export default function AddButtonCard({ additionalClassName }) {
   const [showForm, setShowForm] = useState(false);
   const cardClasses = `border-stone h-56 flex w-2/5 overflow-hidden shadow-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${additionalClassName}`;
+  const pathname = usePathname();
 
   function handleCancelAdd() {
     setShowForm(false);

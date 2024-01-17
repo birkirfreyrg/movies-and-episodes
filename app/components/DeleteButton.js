@@ -2,23 +2,28 @@
 
 import React, { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function DeleteButton({ id }) {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const path = pathname.split("/");
 
   const handleClick = () => {
     setShowConfirmDelete(true);
   };
 
   async function handleConfirmDelete() {
-    const response = await fetch(`http://localhost:3000/api/movies?id=${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `http://localhost:3000/api/${path[1]}?id=${path[2]}`,
+      {
+        method: "DELETE",
+      }
+    );
     setShowConfirmDelete(false);
     if (response.status == 200) {
-      router.push("/");
+      router.push(`/${path[1]}`);
       router.refresh();
     }
   }

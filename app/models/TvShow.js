@@ -1,8 +1,6 @@
-// app/models/Movie.js
-
 const { Schema, models, model } = require("mongoose");
 
-const MovieSchema = new Schema(
+const TvShowSchema = new Schema(
   {
     title: String,
     description: String,
@@ -14,4 +12,4 @@ const MovieSchema = new Schema(
   }
 );
 
-export const Movie = models?.Movie || model("Movie", MovieSchema);
+export const TvShow = models?.TvShow || model("TvShow", TvShowSchema);

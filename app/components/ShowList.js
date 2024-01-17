@@ -2,7 +2,7 @@ import AddButtonCard from "./AddButtonCard";
 import Card from "./Card";
 
 export default function ShowList({ data }) {
-  const isEvenLength = data.length % 2 === 0;
+  const isEvenLength = data?.length % 2 === 0;
   return (
     <>
       {data &&

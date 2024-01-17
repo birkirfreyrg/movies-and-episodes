@@ -1,13 +1,24 @@
 "use client";
 
 import React from "react";
-import DeleteButton from "./DeleteButton";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-export default function Card({ id, title, description, imageUrl }) {
+export default function Card({
+  id,
+  title,
+  description,
+  imageUrl,
+  watchStatus,
+}) {
+  let pathname = usePathname();
+
+  // remove this when I start working on movies
+  if (pathname == "/") pathname = "/movies";
+
   return (
     <div className="w-2/5">
-      <Link href={`/movies/${id}`}>
+      <Link href={`${pathname}/${id}`}>
         <div className="border-stone h-56 flex overflow-hidden">
           {imageUrl && (
             <img

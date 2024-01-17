@@ -1,12 +1,18 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function EditForm({ onCancel, movie }) {
-  const [newTitle, setNewTitle] = useState(movie.title);
-  const [newDescription, setNewDescription] = useState(movie.description);
-  const [newImageUrl, setNewImageUrl] = useState(movie.imageUrl);
+export default function EditForm({ onCancel, data }) {
+  const [newTitle, setNewTitle] = useState(data.title || "");
+  const [newDescription, setNewDescription] = useState(data.description || "");
+  const [newImageUrl, setNewImageUrl] = useState(data.imageUrl || "");
+  const [newWatchStatus, setNewWatchStatus] = useState(data.watchStatus || "");
   const router = useRouter();
+  let pathname = usePathname();
+
+  function handleStatusChange(e) {
+    setNewWatchStatus(e.target.value);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,20 +23,18 @@ export default function EditForm({ onCancel, movie }) {
       newTitle,
       newDescription,
       newImageUrl,
+      newWatchStatus,
     };
 
     // Add the new card to the list
     //onAddCard(newCard);
-    const response = await fetch(
-      `http://localhost:3000/api/movies/${movie._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newCard),
-      }
-    );
+    const response = await fetch(`http://localhost:3000/api${pathname}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCard),
+    });
     if (response.status == 201) {
       router.refresh();
       onCancel();
@@ -79,6 +83,22 @@ export default function EditForm({ onCancel, movie }) {
             onChange={(e) => setNewImageUrl(e.target.value)}
             value={newImageUrl}
           />
+        </label>
+        <label
+          htmlFor="watchStatusSelect"
+          className="block mt-4 text-sm font-medium text-white-700"
+        >
+          Status:
+          <select
+            placeholder="in-progress, watchlist or completed"
+            className="mt-1 p-2 w-full border rounded text-black"
+            onChange={handleStatusChange}
+            value={newWatchStatus}
+          >
+            <option value="in-progress">In Progress</option>
+            <option value="watchlist">Watchlist</option>
+            <option value="completed">Completed</option>
+          </select>
         </label>
         <div className="flex justify-end mt-4">
           <button

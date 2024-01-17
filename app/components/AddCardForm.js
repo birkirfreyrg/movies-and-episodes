@@ -1,12 +1,21 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function AddCardForm({ onCancel }) {
+export default function AddTvShowForm({ onCancel }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [watchStatus, setWatchStatus] = useState("");
   const router = useRouter();
+  let pathname = usePathname();
+
+  // remove this later (testing with "/" for movies)
+  if (pathname == "/") pathname = "/movies";
+
+  function handleStatusChange(e) {
+    setWatchStatus(e.target.value);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,17 +26,19 @@ export default function AddCardForm({ onCancel }) {
       title,
       description,
       imageUrl,
+      watchStatus,
     };
 
     // Add the new card to the list
     //onAddCard(newCard);
-    const response = await fetch("http://localhost:3000/api/movies", {
+    const response = await fetch(`http://localhost:3000/api${pathname}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newCard),
     });
+
     if (response.status == 201) {
       router.refresh();
     }
@@ -75,6 +86,22 @@ export default function AddCardForm({ onCancel }) {
             onChange={(e) => setImageUrl(e.target.value)}
             value={imageUrl}
           />
+        </label>
+        <label
+          htmlFor="watchStatusSelect"
+          className="block mt-4 text-sm font-medium text-white-700"
+        >
+          Status:
+          <select
+            placeholder="in-progress, watchlist or completed"
+            className="mt-1 p-2 w-full border rounded text-black"
+            onChange={handleStatusChange}
+            value={watchStatus}
+          >
+            <option value="in-progress">In Progress</option>
+            <option value="watchlist">Watchlist</option>
+            <option value="completed">Completed</option>
+          </select>
         </label>
         <div className="flex justify-end mt-4">
           <button

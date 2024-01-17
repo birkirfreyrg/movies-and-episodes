@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import EditForm from "./EditForm";
 
-export default function EditButton({ movie }) {
+export default function EditButton({ data }) {
   const [showForm, setShowForm] = useState(false);
 
   function handleCancelAdd() {
@@ -24,7 +24,7 @@ export default function EditButton({ movie }) {
       </div>
       {showForm && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <EditForm movie={movie} onCancel={handleCancelAdd} />
+          <EditForm data={data} onCancel={handleCancelAdd} />
         </div>
       )}
     </>
