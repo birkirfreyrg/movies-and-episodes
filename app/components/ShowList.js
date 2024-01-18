@@ -2,7 +2,6 @@ import AddButtonCard from "./AddButtonCard";
 import Card from "./Card";
 
 export default function ShowList({ data, watchStatusDisplay }) {
-  let sortedData = 0;
   const trueItems = data.filter(
     (item) => item.watchStatus === watchStatusDisplay
   );
@@ -25,11 +24,11 @@ export default function ShowList({ data, watchStatusDisplay }) {
         )}
       {trueItems?.length % 2 === 0 ? (
         <>
-          <AddButtonCard />
+          <AddButtonCard watchStatusDisplay={watchStatusDisplay} />
           <AddButtonCard additionalClassName="invisible " />
         </>
       ) : (
-        <AddButtonCard />
+        <AddButtonCard watchStatusDisplay={watchStatusDisplay} />
       )}
     </>
   );

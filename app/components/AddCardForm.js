@@ -1,8 +1,8 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function AddTvShowForm({ onCancel }) {
+export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -12,6 +12,17 @@ export default function AddTvShowForm({ onCancel }) {
 
   // remove this later (testing with "/" for movies)
   if (pathname == "/") pathname = "/movies";
+
+  useEffect(() => {
+    // Set the default watchStatus based on the watchStatusDisplay prop
+    if (watchStatusDisplay === "watchlist") {
+      setWatchStatus("watchlist");
+    } else if (watchStatusDisplay === "completed") {
+      setWatchStatus("completed");
+    } else if (watchStatusDisplay === "in-progress") {
+      setWatchStatus("in-progress");
+    }
+  }, [watchStatusDisplay]);
 
   function handleStatusChange(e) {
     setWatchStatus(e.target.value);
@@ -98,7 +109,10 @@ export default function AddTvShowForm({ onCancel }) {
             onChange={handleStatusChange}
             value={watchStatus}
           >
-            <option value="in-progress">In Progress</option>
+            {pathname !== "/movies" && (
+              <option value="in-progress">In Progress</option>
+            )}
+
             <option value="watchlist">Watchlist</option>
             <option value="completed">Completed</option>
           </select>
