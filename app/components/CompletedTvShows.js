@@ -1,7 +1,9 @@
+import getTvShows from "@/controllers/getTvShows";
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
 
-export default function CompletedTvShows() {
+export default async function CompletedTvShows() {
+  const tvShows = await getTvShows();
   const completedTvShows = [
     {
       id: 1,
@@ -16,7 +18,7 @@ export default function CompletedTvShows() {
   return (
     <>
       <CardContainer title="Completed Tv Shows">
-        <ShowList data={completedTvShows} />
+        <ShowList data={tvShows} watchStatusDisplay={"completed"} />
       </CardContainer>
     </>
   );

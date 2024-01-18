@@ -1,7 +1,10 @@
+import getTvShows from "@/controllers/getTvShows";
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
 
-export default function WatchlistTvShows() {
+export default async function WatchlistTvShows() {
+  const tvShows = await getTvShows();
+
   const watchlistTvShows = [
     {
       id: 1,
@@ -32,7 +35,7 @@ export default function WatchlistTvShows() {
   return (
     <>
       <CardContainer title="Watchlist Tv Shows">
-        <ShowList data={watchlistTvShows} />
+        <ShowList data={tvShows} watchStatusDisplay={"watchlist"} />
       </CardContainer>
     </>
   );

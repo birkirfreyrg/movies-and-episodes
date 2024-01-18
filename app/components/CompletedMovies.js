@@ -1,8 +1,10 @@
 import React from "react";
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
+import getMovies from "@/controllers/getMovies";
 
-export default function CompletedMovies() {
+export default async function CompletedMovies() {
+  const movies = await getMovies();
   const completedMovies = [
     {
       id: 1,
@@ -49,7 +51,7 @@ export default function CompletedMovies() {
   ];
   return (
     <CardContainer title="Completed Movies">
-      <ShowList data={completedMovies} />
+      <ShowList data={movies} watchStatusDisplay={"completed"} />
     </CardContainer>
   );
 }

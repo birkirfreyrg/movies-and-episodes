@@ -1,7 +1,10 @@
+import getMovies from "@/controllers/getMovies";
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
 
-export default function WatchlistMovies() {
+export default async function WatchlistMovies() {
+  const movies = await getMovies();
+
   const watchlistMovies = [
     {
       id: 1,
@@ -56,7 +59,7 @@ export default function WatchlistMovies() {
   return (
     <>
       <CardContainer title="Watchlist Movies">
-        <ShowList data={watchlistMovies} />
+        <ShowList data={movies} watchStatusDisplay={"watchlist"} />
       </CardContainer>
     </>
   );

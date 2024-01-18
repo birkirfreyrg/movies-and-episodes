@@ -8,7 +8,7 @@ export default async function InProgressTvShows() {
   return (
     <>
       <CardContainer title="Tv Shows in Progress">
-        <ShowList data={tvShows} />
+        <ShowList data={tvShows} watchStatusDisplay={"in-progress"} />
       </CardContainer>
     </>
   );
