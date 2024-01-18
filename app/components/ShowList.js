@@ -24,11 +24,16 @@ export default function ShowList({ data, watchStatusDisplay }) {
         )}
       {trueItems?.length % 2 === 0 ? (
         <>
-          <AddButtonCard watchStatusDisplay={watchStatusDisplay} />
-          <AddButtonCard additionalClassName="invisible " />
+          <AddButtonCard
+            watchStatusDisplay={watchStatusDisplay}
+            isEven={trueItems?.length % 2 === 0}
+          />
         </>
       ) : (
-        <AddButtonCard watchStatusDisplay={watchStatusDisplay} />
+        <AddButtonCard
+          watchStatusDisplay={watchStatusDisplay}
+          isEven={trueItems?.length % 2 === 0}
+        />
       )}
     </>
   );
