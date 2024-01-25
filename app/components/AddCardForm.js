@@ -62,6 +62,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
     if (response.status == 201) {
       router.refresh();
     }
+    onCancel();
   }
 
   return (
