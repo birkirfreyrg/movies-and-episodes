@@ -6,6 +6,7 @@ const TvShowSchema = new Schema(
     description: String,
     imageUrl: String,
     watchStatus: String,
+    category: String,
   },
   {
     timestamps: true,

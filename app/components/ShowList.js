@@ -1,7 +1,11 @@
 import AddButtonCard from "./AddButtonCard";
 import Card from "./Card";
 
-export default function ShowList({ data, watchStatusDisplay }) {
+export default function ShowList({
+  data,
+  watchStatusDisplay,
+  selectedCategory,
+}) {
   const trueItems = data.filter(
     (item) => item.watchStatus === watchStatusDisplay
   );
@@ -18,7 +22,7 @@ export default function ShowList({ data, watchStatusDisplay }) {
                 title={item.title}
                 description={item.description}
                 imageUrl={item.imageUrl}
-                watchStatus={item.watchStatus}
+                selectedCategory={selectedCategory}
               />
             )
         )}

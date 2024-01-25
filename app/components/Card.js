@@ -9,12 +9,12 @@ export default function Card({
   title,
   description,
   imageUrl,
-  watchStatus,
+  selectedCategory,
 }) {
   let pathname = usePathname();
 
   // remove this when I start working on movies
-  if (pathname == "/") pathname = "/movies";
+  if (pathname == "/") pathname = `/${selectedCategory}`;
 
   return (
     <div className="w-2/5">

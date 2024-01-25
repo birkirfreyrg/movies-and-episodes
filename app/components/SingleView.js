@@ -20,6 +20,7 @@ export default function SingleView({ data }) {
               <DeleteButton id={data._id} />
               <EditButton data={data} />
               <h1>Status: {data.watchStatus}</h1>
+              <h1>Category: {data.category}</h1>
             </div>
           </div>
         </div>

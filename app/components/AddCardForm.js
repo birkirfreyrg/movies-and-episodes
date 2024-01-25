@@ -7,6 +7,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [watchStatus, setWatchStatus] = useState("");
+  const [category, setCategory] = useState("");
   const router = useRouter();
   let pathname = usePathname();
 
@@ -15,6 +16,12 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
   useEffect(() => {
     // Set the default watchStatus based on the watchStatusDisplay prop
+    if (pathname === "/movies") {
+      setCategory("movies");
+    } else {
+      setCategory("tv-shows");
+    }
+
     if (watchStatusDisplay === "watchlist") {
       setWatchStatus("watchlist");
     } else if (watchStatusDisplay === "completed") {
@@ -38,7 +45,9 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
       description,
       imageUrl,
       watchStatus,
+      category,
     };
+    console.log(newCard.category);
 
     // Add the new card to the list
     //onAddCard(newCard);
@@ -98,6 +107,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             value={imageUrl}
           />
         </label>
+
         <label
           htmlFor="watchStatusSelect"
           className="block mt-4 text-sm font-medium text-white-700"

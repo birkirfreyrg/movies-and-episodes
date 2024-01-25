@@ -8,7 +8,11 @@ export default async function CompletedMovies() {
 
   return (
     <CardContainer title="Completed Movies">
-      <ShowList data={movies} watchStatusDisplay={"completed"} />
+      <ShowList
+        data={movies}
+        watchStatusDisplay={"completed"}
+        selectedCategory={"movies"}
+      />
     </CardContainer>
   );
 }

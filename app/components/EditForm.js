@@ -7,11 +7,16 @@ export default function EditForm({ onCancel, data }) {
   const [newDescription, setNewDescription] = useState(data.description || "");
   const [newImageUrl, setNewImageUrl] = useState(data.imageUrl || "");
   const [newWatchStatus, setNewWatchStatus] = useState(data.watchStatus || "");
+  const [newCategory, setNewCategory] = useState(data.category || "");
   const router = useRouter();
   let pathname = usePathname();
 
   function handleStatusChange(e) {
     setNewWatchStatus(e.target.value);
+  }
+
+  function handleCategoryChange(e) {
+    setNewCategory(e.target.value);
   }
 
   async function handleSubmit(e) {
@@ -24,6 +29,7 @@ export default function EditForm({ onCancel, data }) {
       newDescription,
       newImageUrl,
       newWatchStatus,
+      newCategory,
     };
 
     // Add the new card to the list
@@ -98,6 +104,24 @@ export default function EditForm({ onCancel, data }) {
             <option value="in-progress">In Progress</option>
             <option value="watchlist">Watchlist</option>
             <option value="completed">Completed</option>
+          </select>
+        </label>
+        <label
+          htmlFor="categorySelect"
+          className="block mt-4 text-sm font-medium text-white-700"
+        >
+          Category:
+          <select
+            placeholder="movies or tv-shows"
+            className="mt-1 p-2 w-full border rounded text-black"
+            onChange={handleCategoryChange}
+            value={newCategory === "" ? "" : newCategory}
+          >
+            <option value="" disabled hidden>
+              Select a category
+            </option>
+            <option value="movies">Movies</option>
+            <option value="tv-shows">Tv-Shows</option>
           </select>
         </label>
         <div className="flex justify-end mt-4">

@@ -27,12 +27,14 @@ export async function PUT(request, { params: { id } }) {
       newDescription: description,
       newImageUrl: imageUrl,
       newWatchStatus: watchStatus,
+      newCategory: category,
     } = await request.json();
     const newMovie = {
       title,
       description,
       imageUrl,
       watchStatus,
+      category,
     };
     // connect to the DB
     await mongooseConnect();
