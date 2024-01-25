@@ -9,7 +9,7 @@ export default function AddButtonCard({
   isEven,
 }) {
   const [showForm, setShowForm] = useState(false);
-  const cardClasses = `border-stone h-56 flex w-2/5 overflow-hidden shadow-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${additionalClassName}`;
+  const cardClasses = `border-stone h-56 lg:h-64 sm:h-80 sm:w-5/6 lg:w-2/5 w-2/5 flex shadow-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${additionalClassName}`;
   const invisibleClass = `invisible ${cardClasses} `;
   const pathname = usePathname();
 
