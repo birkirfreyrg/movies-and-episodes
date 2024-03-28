@@ -1,3 +1,4 @@
+import Image from "next/image";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 
@@ -7,11 +8,13 @@ export default function SingleView({ data }) {
       {data && (
         <div className="flex">
           <div className="w-1/2 p-2">
-            <img
+            <Image
               src={data.imageUrl}
+              width={500}
+              height={500}
               alt={data.title}
               className="w-full h-auto object-cover rounded-lg shadow-md"
-            ></img>
+            />
           </div>
           <div className="w-1/2 p-2">
             <h1 className="text-5xl font-bold text-white mb-4">{data.title}</h1>

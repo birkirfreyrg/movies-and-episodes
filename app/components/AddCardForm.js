@@ -29,7 +29,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
     } else if (watchStatusDisplay === "in-progress") {
       setWatchStatus("in-progress");
     }
-  }, [watchStatusDisplay]);
+  }, [watchStatusDisplay, pathname]);
 
   function handleStatusChange(e) {
     setWatchStatus(e.target.value);

@@ -11,7 +11,7 @@ export default function CardContainer({ children, title }) {
     if (pathname === "/") {
       setChildrenVisibility(false);
     }
-  }, []);
+  }, [pathname]);
 
   const toggleChildrenVisibility = () => {
     setChildrenVisibility((prevVisibility) => !prevVisibility);
@@ -20,13 +20,14 @@ export default function CardContainer({ children, title }) {
   return (
     <>
       <div
+        onClick={toggleChildrenVisibility}
         className={` text-white border-stone my-2 shadow-lg cursor-pointer  ${
           isChildrenVisible
             ? "hover:bg-#0f0f0f"
             : "hover:bg-white hover:text-black"
         }`}
       >
-        <ListTitle title={title} onClick={toggleChildrenVisibility} />
+        <ListTitle title={title} />
         <div
           className={`flex flex-wrap justify-center items-center gap-10 mb-8 ${
             isChildrenVisible ? "visible" : "hidden"

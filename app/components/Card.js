@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Card({
   id,
@@ -21,8 +22,10 @@ export default function Card({
       <Link href={`${pathname}/${id}`}>
         <div className="border-stone h-56 lg:h-64 sm:h-80 flex overflow-y-auto">
           {imageUrl && (
-            <img
+            <Image
               className="w-48 max-w-full h-auto object-cover"
+              width={500}
+              height={500}
               src={imageUrl}
               alt={title}
             />

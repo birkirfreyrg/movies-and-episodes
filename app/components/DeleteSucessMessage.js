@@ -8,7 +8,7 @@ export default function DeleteSuccessMessage() {
 
   useEffect(() => {
     router.refresh();
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex flex-wrap justify-center items-center w-full h-screen flex-col">
