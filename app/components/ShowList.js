@@ -6,6 +6,7 @@ export default function ShowList({
   watchStatusDisplay,
   selectedCategory,
 }) {
+  console.log(data);
   const trueItems = data.filter(
     (item) => item.watchStatus === watchStatusDisplay
   );

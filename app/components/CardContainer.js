@@ -19,7 +19,13 @@ export default function CardContainer({ children, title }) {
 
   return (
     <>
-      <div className="border-stone my-2 shadow-lg">
+      <div
+        className={` text-white border-stone my-2 shadow-lg cursor-pointer  ${
+          isChildrenVisible
+            ? "hover:bg-#0f0f0f"
+            : "hover:bg-white hover:text-black"
+        }`}
+      >
         <ListTitle title={title} onClick={toggleChildrenVisibility} />
         <div
           className={`flex flex-wrap justify-center items-center gap-10 mb-8 ${

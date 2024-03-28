@@ -11,7 +11,7 @@ export default function Nav() {
     "text-center block border-stone hover:border-gray-200 text-white-500 py-2 px-4";
 
   return (
-    <nav>
+    <nav className="text-white">
       <ul className="flex">
         <li className="flex-1 mr-2">
           <Link

@@ -8,6 +8,7 @@ export default async function WatchlistMovies() {
   return (
     <>
       <CardContainer title="Watchlist Movies">
+        {console.log("data " + movies)}
         <ShowList
           data={movies}
           watchStatusDisplay={"watchlist"}
