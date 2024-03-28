@@ -5,11 +5,13 @@ import EditForm from "./EditForm";
 export default function EditButton({ data }) {
   const [showForm, setShowForm] = useState(false);
 
-  function handleCancelAdd() {
+  function handleCancelAdd(e) {
+    e.stopPropagation();
     setShowForm(false);
   }
 
-  function handleShowForm() {
+  function handleShowForm(e) {
+    e.stopPropagation();
     setShowForm(true);
   }
 

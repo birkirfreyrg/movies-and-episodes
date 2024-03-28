@@ -17,8 +17,13 @@ export default function Card({
   // remove this when I start working on movies
   if (pathname == "/") pathname = `/${selectedCategory}`;
 
+  const handleClick = (e) => {
+    // Stop the click event from bubbling up to parent elements
+    e.stopPropagation();
+  };
+
   return (
-    <div className="w-2/5 lg:w-2/5 sm:w-5/6">
+    <div className="w-2/5 lg:w-2/5 sm:w-5/6" onClick={handleClick}>
       <Link href={`${pathname}/${id}`}>
         <div className="border-stone h-56 lg:h-64 sm:h-80 flex overflow-y-auto">
           {imageUrl && (

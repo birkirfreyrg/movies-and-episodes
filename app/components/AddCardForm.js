@@ -14,6 +14,11 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   // remove this later (testing with "/" for movies)
   if (pathname == "/") pathname = "/movies";
 
+  const handleClick = (e) => {
+    // Stop the click event from bubbling up to parent elements
+    e.stopPropagation();
+  };
+
   useEffect(() => {
     // Set the default watchStatus based on the watchStatusDisplay prop
     if (pathname === "/movies") {
@@ -37,7 +42,6 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // Validate input (you can add more validation if needed)
 
     // Create a new card object
     const newCard = {
@@ -66,7 +70,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} onClick={handleClick}>
       <div className="color-background border-stone brightness-75 bg-opacity-90 p-4 rounded shadow-md">
         <h2 className="text-xl font-bold mb-4">Add New</h2>
         <label
@@ -78,7 +82,10 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             type="text"
             placeholder="Enter Title"
             className="mt-1 p-2 w-full border rounded text-black"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              e.stopPropagation();
+              setTitle(e.target.value);
+            }}
             value={title}
           />
         </label>
@@ -91,7 +98,10 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             placeholder="Enter Description"
             className="mt-1 p-2 w-full border rounded text-black"
             rows="4"
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              e.stopPropagation();
+              setDescription(e.target.value);
+            }}
             value={description}
           />
         </label>
@@ -104,7 +114,10 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             type="text"
             placeholder="Enter the Image URL"
             className="mt-1 p-2 w-full border rounded text-black"
-            onChange={(e) => setImageUrl(e.target.value)}
+            onChange={(e) => {
+              e.stopPropagation();
+              setImageUrl(e.target.value);
+            }}
             value={imageUrl}
           />
         </label>
@@ -117,7 +130,10 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
           <select
             placeholder="in-progress, watchlist or completed"
             className="mt-1 p-2 w-full border rounded text-black"
-            onChange={handleStatusChange}
+            onChange={(e) => {
+              e.stopPropagation();
+              handleStatusChange;
+            }}
             value={watchStatus}
           >
             {pathname !== "/movies" && (
@@ -137,7 +153,10 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
           </button>
           <button
             className="text-black bg-white px-4 py-2 rounded"
-            onClick={onCancel}
+            onClick={(e) => {
+              e.stopPropagation();
+              onCancel();
+            }}
           >
             Cancel
           </button>

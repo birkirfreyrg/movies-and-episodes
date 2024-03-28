@@ -17,7 +17,8 @@ export default function AddButtonCard({
     setShowForm(false);
   }
 
-  function handleShowForm() {
+  function handleShowForm(e) {
+    e.stopPropagation();
     setShowForm(true);
   }
 

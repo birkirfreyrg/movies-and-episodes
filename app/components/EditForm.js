@@ -12,15 +12,18 @@ export default function EditForm({ onCancel, data }) {
   let pathname = usePathname();
 
   function handleStatusChange(e) {
+    e.stopPropagation();
     setNewWatchStatus(e.target.value);
   }
 
   function handleCategoryChange(e) {
+    e.stopPropagation();
     setNewCategory(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    e.stopPropagation();
     // Validate input (you can add more validation if needed)
 
     // Create a new card object
