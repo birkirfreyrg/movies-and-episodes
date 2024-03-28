@@ -4,7 +4,7 @@ export default function ConfirmDelete({ onCancel, onConfirm }) {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 flex items-center justify-center">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-md shadow-md">
-        <p className="text-lg font-semibold mb-4">
+        <p className="text-lg text-white font-semibold mb-4">
           Are you sure you want to delete?
         </p>
         <div className="flex justify-end">

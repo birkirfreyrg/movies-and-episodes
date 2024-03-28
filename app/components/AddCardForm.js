@@ -40,6 +40,15 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
     setWatchStatus(e.target.value);
   }
 
+  function isValidUrl(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -52,6 +61,13 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
       category,
     };
     console.log(newCard.category);
+
+    // Validate imageUrl
+    if (!isValidUrl(newCard.imageUrl)) {
+      // TODO make a pretty alert component.
+      alert("The image URL is invalid. Please provide a valid URL.");
+      return; // Stop the submission if the URL is invalid
+    }
 
     // Add the new card to the list
     //onAddCard(newCard);
