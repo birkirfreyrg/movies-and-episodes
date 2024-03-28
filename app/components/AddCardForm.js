@@ -71,13 +71,16 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
     // Add the new card to the list
     //onAddCard(newCard);
-    const response = await fetch(`http://localhost:3000/api${pathname}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCard),
-    });
+    const response = await fetch(
+      `https://movies-and-episodes.vercel.app/api${pathname}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCard),
+      }
+    );
 
     if (response.status == 201) {
       router.refresh();
