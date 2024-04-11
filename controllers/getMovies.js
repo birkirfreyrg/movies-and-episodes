@@ -1,7 +1,7 @@
 export default async function getMovies() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const response = await fetch(`${apiUrl}/movies`, {
+    const response = await fetch(`/api/movies`, {
       cache: "no-store",
     });
     const movies = await response.json();

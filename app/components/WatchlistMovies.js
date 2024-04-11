@@ -7,7 +7,6 @@ export default async function WatchlistMovies() {
 
   return (
     <>
-      <div className="text-white">{movies.length}</div>
       <CardContainer title="Watchlist Movies">
         <ShowList
           data={movies}

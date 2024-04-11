@@ -1,5 +1,3 @@
-import DeleteButton from "@/app/components/DeleteButton";
-import EditButton from "@/app/components/EditButton";
 import Layout from "@/app/components/Layout";
 import Nav from "@/app/components/Nav";
 import SingleView from "@/app/components/SingleView";
