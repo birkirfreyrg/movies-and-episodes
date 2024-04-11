@@ -5,16 +5,6 @@ import { NextResponse } from "next/server";
 import { mongooseConnect } from "../../lib/mongoose";
 import { Movie } from "../../models/Movie";
 
-function addCorsHeaders(response) {
-  response.headers.set("Access-Control-Allow-Origin", "*"); // Or your specific origin
-  response.headers.set(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, DELETE"
-  );
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-  return response;
-}
-
 export async function POST(request) {
   try {
     // Get the data from the request
@@ -30,18 +20,16 @@ export async function POST(request) {
     // connect to the DB
     await mongooseConnect();
     await Movie.create(newMovie);
-    const response = NextResponse.json(
+    return NextResponse.json(
       { message: "Movie created successfully", data: newMovie },
       { status: 201 }
     );
-    return addCorsHeaders(response);
     // Use the Model to create
   } catch (error) {
-    const response = NextResponse.json(
+    return NextResponse.json(
       { message: "Failed to create movie", error },
       { status: 500 }
     );
-    return addCorsHeaders(response);
   }
 }
 
@@ -51,17 +39,12 @@ export async function GET(request) {
     await mongooseConnect();
     // get the data using the model
     const movies = await Movie.find();
-    const response = NextResponse.json(
-      { message: "Ok", data: movies },
-      { status: 200 }
-    );
-    return addCorsHeaders(response);
+    return NextResponse.json({ message: "Ok", data: movies }, { status: 200 });
   } catch (error) {
-    const response = NextResponse.json(
+    return NextResponse.json(
       { message: "Failed to fetch movies", error },
       { status: 500 }
     );
-    return addCorsHeaders(response);
   }
 }
 
@@ -75,25 +58,14 @@ export async function DELETE(request) {
     // Use the model to delete
     await Movie.findByIdAndDelete(id);
     // return the response
-    const response = NextResponse.json(
+    return NextResponse.json(
       { message: "Movie deleted Successfully" },
       { status: 200 }
     );
-    return addCorsHeaders(response);
   } catch (error) {
-    const response = NextResponse.json(
+    return NextResponse.json(
       { message: "Failed to delete movie", error },
       { status: 500 }
     );
-    return addCorsHeaders(response);
   }
-}
-
-// Handle OPTIONS request for CORS preflight
-export function middleware(request) {
-  if (request.method === "OPTIONS") {
-    const response = new NextResponse(null, { status: 200 });
-    return addCorsHeaders(response);
-  }
-  return NextResponse.next();
 }

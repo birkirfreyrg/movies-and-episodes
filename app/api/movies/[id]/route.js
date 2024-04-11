@@ -48,7 +48,7 @@ export async function PUT(request, { params: { id } }) {
     return NextResponse.json({
       message: "Failed to fetch movies",
       error,
-      status: 500,
+      status: 204,
     });
   }
 }
