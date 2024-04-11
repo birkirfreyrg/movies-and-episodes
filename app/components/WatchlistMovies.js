@@ -1,5 +1,3 @@
-// app/components/WatchlistMovies.js
-
 import getMovies from "@/controllers/getMovies";
 import CardContainer from "./CardContainer";
 import ShowList from "./ShowList";
@@ -9,6 +7,7 @@ export default async function WatchlistMovies() {
 
   return (
     <>
+      <div className="text-white">{movies.length}</div>
       <CardContainer title="Watchlist Movies">
         <ShowList
           data={movies}
