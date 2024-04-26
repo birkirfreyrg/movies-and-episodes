@@ -7,7 +7,6 @@ export default function Page() {
   return (
     <Layout>
       <Nav />
-      <div className="w-full h-full text-white">Test</div>
       <WatchListMovies />
       <CompletedMovies />
     </Layout>
