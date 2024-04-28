@@ -23,12 +23,12 @@ export default function Card({
   };
 
   return (
-    <div className="w-2/5 lg:w-2/5 sm:w-5/6" onClick={handleClick}>
+    <div className="md:w-full lg:w-2/5" onClick={handleClick}>
       <Link href={`${pathname}/${id}`}>
-        <div className="border-stone h-56 lg:h-64 sm:h-80 flex overflow-y-auto">
+        <div className="border-stone h-56 flex overflow-y-auto">
           {imageUrl && (
             <Image
-              className="w-48 max-w-full h-auto object-cover"
+              className="w-48  h-auto object-cover"
               width={500}
               height={500}
               src={imageUrl}
@@ -36,9 +36,9 @@ export default function Card({
             />
           )}
           <div className="flex-grow flex flex-col justify-start">
-            <div className="p-1.5 mx-1">
+            <div className="hidden md:block p-1.5 mx-1">
               <div className="font-bold text-xl mb-1">{title}</div>
-              <div className=" h-full lg:h-full sm:h-full">
+              <div className="h-full">
                 <p className="text-gray-200 text-base">{description}</p>
               </div>
             </div>
