@@ -52,25 +52,26 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Create a new card object
+    // Check if imageUrl is empty
+    const finalImageUrl = imageUrl.trim() === "" ? "/tempPhoto.webp" : imageUrl;
+
+    // Create a new card object with the finalImageUrl
     const newCard = {
       title,
       description,
-      imageUrl,
+      imageUrl: finalImageUrl,
       watchStatus,
       category,
     };
-    console.log(newCard.category);
 
-    // Validate imageUrl
-    if (!isValidUrl(newCard.imageUrl)) {
+    // Validate imageUrl only if it is not the default
+    if (finalImageUrl !== "/tempPhoto.webp" && !isValidUrl(newCard.imageUrl)) {
       // TODO make a pretty alert component.
       alert("The image URL is invalid. Please provide a valid URL.");
       return; // Stop the submission if the URL is invalid
     }
 
     // Add the new card to the list
-    //onAddCard(newCard);
     const response = await fetch(
       `https://movies-and-episodes.vercel.app/api${pathname}`,
       {
@@ -82,7 +83,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
       }
     );
 
-    if (response.status == 201) {
+    if (response.status === 201) {
       router.refresh();
     }
     onCancel();
