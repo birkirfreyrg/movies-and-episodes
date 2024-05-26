@@ -19,11 +19,20 @@ export default function SingleView({ data }) {
           <div className="w-full md:w-1/2 p-2 md:mt-8">
             <h1 className="text-5xl font-bold text-white mb-4">{data.title}</h1>
             <h2 className="text-xl text-white mb-4">{data.description}</h2>
-            <div className="flex items-center gap-2 mb-2">
-              <DeleteButton id={data._id} />
+            <div className="flex flex-col gap-1 mt-10">
+              <h2 className="text-xl text-white ">
+                List:{" "}
+                {data.watchStatus.charAt(0).toUpperCase() +
+                  data.watchStatus.slice(1)}
+              </h2>
+              <h2 className="text-xl text-white">
+                Category:{" "}
+                {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
+              </h2>
+            </div>
+            <div className="flex items-center gap-2 mt-2 mb-2">
               <EditButton data={data} />
-              <h1>Status: {data.watchStatus}</h1>
-              <h1>Category: {data.category}</h1>
+              <DeleteButton id={data._id} />
             </div>
           </div>
         </div>

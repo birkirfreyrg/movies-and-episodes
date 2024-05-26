@@ -49,8 +49,8 @@ export default function EditForm({ onCancel, data }) {
     );
     if (response.status == 201) {
       router.refresh();
-      onCancel();
     }
+    onCancel();
   }
 
   return (
@@ -135,7 +135,7 @@ export default function EditForm({ onCancel, data }) {
             className="bg-white text-black px-4 py-2 mr-2 rounded"
             type="submit"
           >
-            Edit
+            Save
           </button>
           <button
             className="text-black bg-white px-4 py-2 rounded"

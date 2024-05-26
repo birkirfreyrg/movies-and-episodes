@@ -7,18 +7,18 @@ export default function ConfirmDelete({ onCancel, onConfirm }) {
         <p className="text-lg text-white font-semibold mb-4">
           Are you sure you want to delete?
         </p>
-        <div className="flex justify-end">
-          <button
-            className="mr-2 px-4 py-2 text-white bg-gray-500 dark:bg-gray-600 rounded-md"
-            onClick={onCancel}
-          >
-            No
-          </button>
+        <div className="flex gap-2 justify-end">
           <button
             className="px-4 py-2 text-white bg-red-500 dark:bg-red-600 rounded-md"
             onClick={onConfirm}
           >
             Yes
+          </button>
+          <button
+            className="mr-2 px-4 py-2 text-white bg-gray-500 dark:bg-gray-600 rounded-md"
+            onClick={onCancel}
+          >
+            No
           </button>
         </div>
       </div>
