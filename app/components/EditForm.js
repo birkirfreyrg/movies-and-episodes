@@ -48,9 +48,9 @@ export default function EditForm({ onCancel, data }) {
       }
     );
     if (response.status == 201) {
-      router.refresh();
+      if (newCategory == "tv-shows") router.push(`/tvshows`, { scroll: false });
+      else router.push(`/movies`, { scroll: false });
     }
-    onCancel();
   }
 
   return (
