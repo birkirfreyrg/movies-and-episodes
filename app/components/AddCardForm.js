@@ -312,12 +312,6 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
         
         <div className="flex justify-end mt-4">
           <button
-            className="bg-white text-black px-4 py-2 mr-2 rounded"
-            type="submit"
-          >
-            Add
-          </button>
-          <button
             className="text-black bg-white px-4 py-2 rounded"
             type="button"
             onClick={(e) => {
@@ -326,6 +320,12 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             }}
           >
             Cancel
+          </button>
+          <button
+            className="bg-white text-black px-4 py-2 ml-2 rounded"
+            type="submit"
+          >
+            Add
           </button>
         </div>
       </div>
