@@ -5,7 +5,8 @@ import Nav from "@/app/components/Nav";
 import SingleView from "@/app/components/SingleView";
 import getTvShow from "@/controllers/getSingleTvShow";
 
-export default async function TvShow({ params: { id } }) {
+export default async function TvShow({ params }) {
+  const { id } = await params;
   const data = await getTvShow(id);
 
   return (

@@ -2,8 +2,9 @@ import { mongooseConnect } from "@/app/lib/mongoose";
 import { TvShow } from "@/app/models/TvShow";
 import { NextResponse } from "next/server";
 
-export async function GET(request, { params: { id } }) {
+export async function GET(request, { params }) {
   try {
+    const { id } = await params;
     // connect to the DB
     await mongooseConnect();
     // get the data using the model
@@ -19,8 +20,9 @@ export async function GET(request, { params: { id } }) {
 }
 
 // Update/Editing a tv show
-export async function PUT(request, { params: { id } }) {
+export async function PUT(request, { params }) {
   try {
+    const { id } = await params;
     // Get the data from the request
     const {
       newTitle: title,
