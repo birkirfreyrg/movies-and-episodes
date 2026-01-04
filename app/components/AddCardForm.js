@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   const [title, setTitle] = useState("");
@@ -13,6 +13,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
+  const searchInputRef = useRef(null);
   const router = useRouter();
   let pathname = usePathname();
 
@@ -40,6 +41,18 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
       setWatchStatus("in-progress");
     }
   }, [watchStatusDisplay, pathname]);
+
+  // Auto-focus the search input when the form opens
+  useEffect(() => {
+    // Small delay to ensure the DOM is fully rendered, especially for modal overlays
+    const timer = setTimeout(() => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array means this runs once when component mounts
 
   function handleStatusChange(e) {
     setWatchStatus(e.target.value);
@@ -144,6 +157,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
           </label>
           <div className="flex gap-2">
             <input
+              ref={searchInputRef}
               type="text"
               placeholder={`Search ${pathname === "/movies" ? "movies" : "TV shows"}...`}
               className="flex-1 p-2 border rounded text-black"
