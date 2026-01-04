@@ -137,16 +137,16 @@ export default function EditForm({ onCancel, data }) {
         </label>
         <div className="flex justify-end mt-4">
           <button
-            className="bg-white text-black px-4 py-2 mr-2 rounded"
-            type="submit"
-          >
-            Save
-          </button>
-          <button
             className="text-black bg-white px-4 py-2 rounded"
             onClick={onCancel}
           >
             Cancel
+          </button>
+          <button
+            className="bg-white text-black px-4 py-2 ml-2 rounded"
+            type="submit"
+          >
+            Save
           </button>
         </div>
       </div>
