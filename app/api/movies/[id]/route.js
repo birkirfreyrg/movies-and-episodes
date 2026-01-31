@@ -30,6 +30,7 @@ export async function PUT(request, { params }) {
       newImageUrl: imageUrl,
       newWatchStatus: watchStatus,
       newCategory: category,
+      newRating: rating,
     } = await request.json();
     const newMovie = {
       title,
@@ -37,6 +38,7 @@ export async function PUT(request, { params }) {
       imageUrl,
       watchStatus,
       category,
+      rating,
     };
     // connect to the DB
     await mongooseConnect();

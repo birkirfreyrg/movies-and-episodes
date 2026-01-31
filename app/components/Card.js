@@ -11,6 +11,7 @@ export default function Card({
   description,
   imageUrl,
   selectedCategory,
+  rating,
 }) {
   let pathname = usePathname();
 
@@ -37,7 +38,14 @@ export default function Card({
           )}
           <div className="flex-grow flex flex-col justify-start">
             <div className="hidden md:block p-1.5 mx-1">
-              <div className="font-bold text-xl mb-1">{title}</div>
+              <div className="font-bold text-xl mb-1 flex items-center justify-between">
+                <span>{title}</span>
+                {rating !== undefined && rating !== null && (
+                  <span className="text-yellow-400 text-sm font-semibold ml-2">
+                    ⭐ {rating.toFixed(1)}/10
+                  </span>
+                )}
+              </div>
               <div className="h-full">
                 <p className="text-gray-200 text-base">{description}</p>
               </div>

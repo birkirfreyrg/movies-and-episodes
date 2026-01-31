@@ -22,6 +22,7 @@ export default function ShowList({
                 description={item.description}
                 imageUrl={item.imageUrl}
                 selectedCategory={selectedCategory}
+                rating={item.rating}
               />
             )
         )}

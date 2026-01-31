@@ -9,6 +9,7 @@ const MovieSchema = new Schema(
     imageUrl: String,
     watchStatus: String,
     category: String,
+    rating: Number,
   },
   {
     timestamps: true,

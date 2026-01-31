@@ -8,7 +8,7 @@ import { Movie } from "../../models/Movie";
 export async function POST(request) {
   try {
     // Get the data from the request
-    const { title, description, imageUrl, watchStatus, category } =
+    const { title, description, imageUrl, watchStatus, category, rating } =
       await request.json();
     const newMovie = {
       title,
@@ -16,6 +16,7 @@ export async function POST(request) {
       imageUrl,
       watchStatus,
       category,
+      rating,
     };
     // connect to the DB
     await mongooseConnect();

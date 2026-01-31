@@ -7,6 +7,7 @@ const TvShowSchema = new Schema(
     imageUrl: String,
     watchStatus: String,
     category: String,
+    rating: Number,
   },
   {
     timestamps: true,

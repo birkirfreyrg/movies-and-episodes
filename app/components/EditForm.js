@@ -8,6 +8,7 @@ export default function EditForm({ onCancel, data }) {
   const [newImageUrl, setNewImageUrl] = useState(data.imageUrl || "");
   const [newWatchStatus, setNewWatchStatus] = useState(data.watchStatus || "");
   const [newCategory, setNewCategory] = useState(data.category || "");
+  const [newRating, setNewRating] = useState(data.rating !== undefined && data.rating !== null ? data.rating.toString() : "");
   const router = useRouter();
   let pathname = usePathname();
 
@@ -33,6 +34,7 @@ export default function EditForm({ onCancel, data }) {
       newImageUrl,
       newWatchStatus,
       newCategory,
+      newRating: newRating ? parseFloat(newRating) : undefined,
     };
 
     // Add the new card to the list
@@ -99,6 +101,22 @@ export default function EditForm({ onCancel, data }) {
             className="mt-1 p-2 w-full border rounded text-black"
             onChange={(e) => setNewImageUrl(e.target.value)}
             value={newImageUrl}
+          />
+        </label>
+        <label
+          htmlFor="rating"
+          className="block mt-4 text-sm font-medium text-white-700"
+        >
+          Rating (0-10):
+          <input
+            type="number"
+            min="0"
+            max="10"
+            step="0.1"
+            placeholder="Enter rating (0-10)"
+            className="mt-1 p-2 w-full border rounded text-black"
+            onChange={(e) => setNewRating(e.target.value)}
+            value={newRating}
           />
         </label>
         <label

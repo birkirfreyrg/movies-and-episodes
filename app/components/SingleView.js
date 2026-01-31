@@ -18,6 +18,13 @@ export default function SingleView({ data }) {
           </div>
           <div className="w-full md:w-1/2 p-2 md:mt-8">
             <h1 className="text-5xl font-bold text-white mb-4">{data.title}</h1>
+            {data.rating !== undefined && data.rating !== null && (
+              <div className="mb-4">
+                <span className="text-yellow-400 text-2xl font-semibold">
+                  ⭐ {data.rating.toFixed(1)}/10
+                </span>
+              </div>
+            )}
             <h2 className="text-xl text-white mb-4">{data.description}</h2>
             <div className="flex flex-col gap-1 mt-10">
               <h2 className="text-xl text-white ">

@@ -8,6 +8,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
   const [imageUrl, setImageUrl] = useState("");
   const [watchStatus, setWatchStatus] = useState("");
   const [category, setCategory] = useState("");
+  const [rating, setRating] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -85,6 +86,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
     setTitle(movie.title || movie.name);
     setDescription(movie.overview);
     setImageUrl(movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "/tempPhoto.webp");
+    setRating(movie.vote_average || "");
     setShowSearchResults(false);
     setSearchQuery("");
   };
@@ -94,6 +96,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
     setTitle("");
     setDescription("");
     setImageUrl("");
+    setRating("");
   };
 
   function isValidUrl(string) {
@@ -118,6 +121,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
       imageUrl: finalImageUrl,
       watchStatus,
       category,
+      rating: rating ? parseFloat(rating) : undefined,
     };
 
     // Validate imageUrl only if it is not the default
@@ -204,6 +208,11 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
                   <p className="text-xs text-gray-600 mb-1">
                     {movie.release_date || movie.first_air_date}
                   </p>
+                  {movie.vote_average && (
+                    <p className="text-xs text-yellow-600 font-semibold mb-1">
+                      ⭐ {movie.vote_average.toFixed(1)}/10
+                    </p>
+                  )}
                   <p className="text-xs text-gray-700 line-clamp-2">
                     {movie.overview}
                   </p>
@@ -241,6 +250,11 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
                 <p className="text-xs text-gray-600">
                   {selectedMovie.release_date || selectedMovie.first_air_date}
                 </p>
+                {selectedMovie.vote_average && (
+                  <p className="text-xs text-yellow-600 font-semibold mt-1">
+                    ⭐ {selectedMovie.vote_average.toFixed(1)}/10
+                  </p>
+                )}
               </div>
             </div>
           </div>
