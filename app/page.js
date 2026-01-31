@@ -7,12 +7,16 @@ import LogoutButton from "./components/LogoutButton";
 
 export default function Home() {
   return (
-    <Layout>
-      <LogoutButton />
-      <Nav />
-      <WatchlistMovies />
-      <InProgressTvShows />
-      <WatchlistTvShows />
-    </Layout>
+    <>
+      <div className="fixed left-4 top-4 z-50">
+        <LogoutButton />
+      </div>
+      <Layout>
+        <Nav />
+        <WatchlistMovies />
+        <InProgressTvShows />
+        <WatchlistTvShows />
+      </Layout>
+    </>
   );
 }
