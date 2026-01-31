@@ -11,15 +11,14 @@ export default function EditForm({ onCancel, data }) {
   const [newRating, setNewRating] = useState(data.rating !== undefined && data.rating !== null ? data.rating.toString() : "");
   const router = useRouter();
   let pathname = usePathname();
+  
+  // Determine if this is a movie or TV show based on pathname
+  const isMovie = pathname.includes('/movies/');
+  const isTvShow = pathname.includes('/tvshows/');
 
   function handleStatusChange(e) {
     e.stopPropagation();
     setNewWatchStatus(e.target.value);
-  }
-
-  function handleCategoryChange(e) {
-    e.stopPropagation();
-    setNewCategory(e.target.value);
   }
 
   async function handleSubmit(e) {
@@ -28,12 +27,12 @@ export default function EditForm({ onCancel, data }) {
     // Validate input (you can add more validation if needed)
 
     // Create a new card object
+    // Note: category is not included as it cannot be changed
     const newCard = {
       newTitle,
       newDescription,
       newImageUrl,
       newWatchStatus,
-      newCategory,
       newRating: newRating ? parseFloat(newRating) : undefined,
     };
 
@@ -49,13 +48,23 @@ export default function EditForm({ onCancel, data }) {
         body: JSON.stringify(newCard),
       }
     );
-    if (response.status == 201) {
-      if (newCategory == "tv-shows") {
-        router.push(`/tvshows`, { scroll: false });
+    if (response.status === 200 || response.status === 201) {
+      // Determine redirect based on current pathname
+      if (pathname.includes('/tvshows/')) {
+        router.push(`/tvshows`);
+        router.refresh();
+      } else if (pathname.includes('/movies/')) {
+        router.push(`/movies`);
         router.refresh();
       } else {
-        router.push(`/movies`, { scroll: false });
-        router.refresh();
+        // Fallback to category if pathname doesn't match
+        if (newCategory === "tv-shows") {
+          router.push(`/tvshows`);
+          router.refresh();
+        } else {
+          router.push(`/movies`);
+          router.refresh();
+        }
       }
     }
   }
@@ -63,10 +72,10 @@ export default function EditForm({ onCancel, data }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="color-background border-stone brightness-75 bg-opacity-90 p-4 rounded shadow-md">
-        <h2 className="text-xl font-bold mb-4">Edit</h2>
+        <h2 className="text-xl font-bold mb-4 text-white">Edit</h2>
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-white-700"
+          className="block text-sm font-medium text-white"
         >
           Title:
           <input
@@ -92,7 +101,7 @@ export default function EditForm({ onCancel, data }) {
         </label>
         <label
           htmlFor="imageUrl"
-          className="block mt-4 text-sm font-medium text-white-700"
+          className="block mt-4 text-sm font-medium text-white"
         >
           Image URL:
           <input
@@ -105,14 +114,14 @@ export default function EditForm({ onCancel, data }) {
         </label>
         <label
           htmlFor="rating"
-          className="block mt-4 text-sm font-medium text-white-700"
+          className="block mt-4 text-sm font-medium text-white"
         >
           Rating (0-10):
           <input
             type="number"
             min="0"
             max="10"
-            step="0.1"
+            step="any"
             placeholder="Enter rating (0-10)"
             className="mt-1 p-2 w-full border rounded text-black"
             onChange={(e) => setNewRating(e.target.value)}
@@ -121,7 +130,7 @@ export default function EditForm({ onCancel, data }) {
         </label>
         <label
           htmlFor="watchStatusSelect"
-          className="block mt-4 text-sm font-medium text-white-700"
+          className="block mt-4 text-sm font-medium text-white"
         >
           Status:
           <select
@@ -130,27 +139,9 @@ export default function EditForm({ onCancel, data }) {
             onChange={handleStatusChange}
             value={newWatchStatus}
           >
-            <option value="in-progress">In Progress</option>
+            {!isMovie && <option value="in-progress">In Progress</option>}
             <option value="watchlist">Watchlist</option>
             <option value="completed">Completed</option>
-          </select>
-        </label>
-        <label
-          htmlFor="categorySelect"
-          className="block mt-4 text-sm font-medium text-white-700"
-        >
-          Category:
-          <select
-            placeholder="movies or tv-shows"
-            className="mt-1 p-2 w-full border rounded text-black"
-            onChange={handleCategoryChange}
-            value={newCategory === "" ? "" : newCategory}
-          >
-            <option value="" disabled hidden>
-              Select a category
-            </option>
-            <option value="movies">Movies</option>
-            <option value="tv-shows">Tv-Shows</option>
           </select>
         </label>
         <div className="flex justify-end mt-4">

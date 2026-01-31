@@ -1,12 +1,11 @@
 module.exports = {
   images: {
-    domains: [
-      "media-amazon.com",
-      "m.media-amazon.com",
-      "kcroonews.com",
-      "lumiere-a.akamaihd.net",
-      "image.tmdb.org",
+    remotePatterns: [
+      { protocol: "https", hostname: "media-amazon.com" },
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      { protocol: "https", hostname: "kcroonews.com" },
+      { protocol: "https", hostname: "lumiere-a.akamaihd.net" },
+      { protocol: "https", hostname: "image.tmdb.org" },
     ],
-    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
 };

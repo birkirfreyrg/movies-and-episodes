@@ -33,7 +33,6 @@ export default function TMDBTestSearch() {
       setResults(data);
       // Calculate total pages based on total results (5 per page)
       setTotalPages(Math.min(Math.ceil(data.total_results / 5), 20)); // Max 20 pages
-      console.log('TMDB Search Results:', data);
     } catch (err) {
       setError(err.message);
       console.error('Search error:', err);
