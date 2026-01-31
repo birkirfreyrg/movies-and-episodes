@@ -2,7 +2,12 @@
 import { MongoClient } from "mongodb";
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
+  throw new Error(
+    'Missing MONGODB_URI environment variable. ' +
+    'Please add MONGODB_URI to your .env.local file. ' +
+    'For local development, use: mongodb://localhost:27017/movies-dev ' +
+    'or your MongoDB Atlas connection string with a dev database name.'
+  );
 }
 
 const uri = process.env.MONGODB_URI;

@@ -38,7 +38,7 @@ export default function EditForm({ onCancel, data }) {
     // Add the new card to the list
     //onAddCard(newCard);
     const response = await fetch(
-      `https://movies-and-episodes.vercel.app/api${pathname}`,
+      `/api${pathname}`,
       {
         method: "PUT",
         headers: {

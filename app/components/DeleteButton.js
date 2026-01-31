@@ -16,7 +16,7 @@ export default function DeleteButton({ id }) {
 
   async function handleConfirmDelete() {
     const response = await fetch(
-      `https://movies-and-episodes.vercel.app/api/${path[1]}?id=${path[2]}`,
+      `/api/${path[1]}?id=${path[2]}`,
       {
         method: "DELETE",
       }

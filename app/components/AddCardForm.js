@@ -129,7 +129,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
     // Add the new card to the list
     const response = await fetch(
-      `https://movies-and-episodes.vercel.app/api${pathname}`,
+      `/api${pathname}`,
       {
         method: "POST",
         headers: {
