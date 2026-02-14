@@ -16,7 +16,7 @@ export default function Nav() {
 
   return (
     <nav className=" text-white">
-      <div className="px-4 py-2 flex justify-between items-center">
+      <div className="px-4 py-2 flex justify-end items-center">
         <button onClick={toggleMenu} className="text-white md:hidden">
           <svg
             className="w-6 h-6"

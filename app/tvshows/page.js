@@ -8,7 +8,13 @@ import LogoutButton from "../components/LogoutButton";
 export default function Page() {
   return (
     <>
-      <div className="fixed left-4 top-4 z-50">
+      <div
+        className="fixed z-50"
+        style={{
+          top: "max(0.5rem, env(safe-area-inset-top))",
+          left: "max(0.75rem, env(safe-area-inset-left))",
+        }}
+      >
         <LogoutButton />
       </div>
       <Layout>
