@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import ListTitle from "./ListTitle";
 import React, { useEffect, useState } from "react";
 
-export default function CardContainer({ children, title }) {
+export default function CardContainer({ children, title, count }) {
   const [isChildrenVisible, setChildrenVisibility] = useState(true);
   const pathname = usePathname();
 
@@ -27,7 +27,7 @@ export default function CardContainer({ children, title }) {
             : "hover:bg-white hover:text-black"
         }`}
       >
-        <ListTitle title={title} />
+        <ListTitle title={title} count={count} />
         <div
           className={`flex flex-wrap justify-center items-center gap-10 mb-8 ${
             isChildrenVisible ? "visible" : "hidden"

@@ -102,9 +102,12 @@ export default async function WatchlistTvShows() {
     tvShows = tempTvShows;
   }
 
+  const watchlistCount =
+    tvShows?.filter((item) => item.watchStatus === "watchlist").length ?? 0;
+
   return (
     <>
-      <CardContainer title="Watchlist Tv Shows">
+      <CardContainer title="Watchlist Tv Shows" count={watchlistCount}>
         <ShowList
           data={tvShows}
           watchStatusDisplay={"watchlist"}

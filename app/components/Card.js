@@ -29,7 +29,7 @@ export default function Card({
         <div className="border-stone h-56 flex overflow-hidden">
           {imageUrl && (
             <Image
-              className="w-48  h-auto object-cover"
+              className="h-full w-full object-contain bg-zinc-900 md:w-48 md:object-cover"
               width={500}
               height={500}
               src={imageUrl}

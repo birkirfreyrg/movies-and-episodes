@@ -102,9 +102,12 @@ export default async function InProgressTvShows() {
     tvShows = tempTvShows;
   }
 
+  const inProgressCount =
+    tvShows?.filter((item) => item.watchStatus === "in-progress").length ?? 0;
+
   return (
     <>
-      <CardContainer title="Tv Shows in Progress">
+      <CardContainer title="Tv Shows in Progress" count={inProgressCount}>
         <ShowList
           data={tvShows}
           watchStatusDisplay={"in-progress"}

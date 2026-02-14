@@ -10,9 +10,10 @@ export default function AddButtonCard({
   isEven,
 }) {
   const [showForm, setShowForm] = useState(false);
-  const cardClasses = `border-stone h-56 lg:h-64 lg:w-2/5 w-2/5 flex shadow-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${additionalClassName}`;
+  const cardClasses = `h-56 lg:h-64 w-full md:w-[48%] lg:w-2/5 flex rounded-2xl border border-dashed border-zinc-500/70 bg-zinc-900/70 shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-800/80 ${additionalClassName || ""}`;
   const invisibleClass = `invisible ${cardClasses} `;
   const pathname = usePathname();
+  const mediaTypeLabel = pathname === "/tvshows" ? "Add TV Show" : "Add Movie";
 
   function useMediaQuery(query) {
     const [matches, setMatches] = useState(false);
@@ -48,25 +49,19 @@ export default function AddButtonCard({
   return (
     <>
       {pathname === "/" ? (
-        <>
-          {!isEven && (
-            <div className={invisibleClass} onClick={handleShowForm}>
-              <PlusIcon />
-            </div>
-          )}
-        </>
+        <></>
       ) : (
         <>
           {shouldShowPlusIcon ? (
             <>
               <div className={cardClasses} onClick={handleShowForm}>
-                <PlusIcon />
+                <PlusIcon label={mediaTypeLabel} />
               </div>
               <div className={invisibleClass} onClick={handleShowForm}>
-                <PlusIcon />
+                <PlusIcon label={mediaTypeLabel} />
               </div>
               {showForm && (
-                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
                   <AddCardForm
                     onCancel={handleCancelAdd}
                     watchStatusDisplay={watchStatusDisplay}
@@ -77,10 +72,10 @@ export default function AddButtonCard({
           ) : (
             <>
               <div className={cardClasses} onClick={handleShowForm}>
-                <PlusIcon />
+                <PlusIcon label={mediaTypeLabel} />
               </div>
               {showForm && (
-                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
                   <AddCardForm
                     onCancel={handleCancelAdd}
                     watchStatusDisplay={watchStatusDisplay}

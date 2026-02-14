@@ -102,9 +102,12 @@ export default async function CompletedTvShows() {
     tvShows = tempTvShows;
   }
 
+  const completedCount =
+    tvShows?.filter((item) => item.watchStatus === "completed").length ?? 0;
+
   return (
     <>
-      <CardContainer title="Completed Tv Shows">
+      <CardContainer title="Completed Tv Shows" count={completedCount}>
         <ShowList
           data={tvShows}
           watchStatusDisplay={"completed"}

@@ -151,12 +151,12 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
   return (
     <form onSubmit={handleSubmit} onClick={handleClick}>
-      <div className="color-background border-stone brightness-75 bg-opacity-90 p-4 rounded shadow-md max-w-2xl">
-        <h2 className="text-xl font-bold mb-4">Add New {pathname === "/movies" ? "Movie" : "TV Show"}</h2>
+      <div className="w-full max-w-2xl rounded-2xl border border-zinc-800 bg-zinc-950/95 p-5 md:p-6 shadow-2xl">
+        <h2 className="mb-5 text-xl font-bold text-zinc-100">Add New {pathname === "/movies" ? "Movie" : "TV Show"}</h2>
         
         {/* Search Section */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-white mb-2">
+          <label className="mb-2 block text-sm font-medium text-zinc-200">
             Search for {pathname === "/movies" ? "Movie" : "TV Show"}:
           </label>
           <div className="flex gap-2">
@@ -164,7 +164,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
               ref={searchInputRef}
               type="text"
               placeholder={`Search ${pathname === "/movies" ? "movies" : "TV shows"}...`}
-              className="flex-1 p-2 border rounded text-black"
+              className="flex-1 rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
@@ -178,7 +178,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
               type="button"
               onClick={handleSearch}
               disabled={searchLoading || !searchQuery.trim()}
-              className="px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-600 disabled:bg-gray-500"
+              className="rounded-md bg-zinc-700 px-4 py-2 text-zinc-100 transition-colors hover:bg-zinc-600 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-500"
             >
               {searchLoading ? "Searching..." : "Search"}
             </button>
@@ -187,11 +187,11 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
         {/* Search Results */}
         {showSearchResults && (
-          <div className="mb-4 max-h-60 overflow-y-auto border rounded bg-white">
+          <div className="mb-4 max-h-60 overflow-y-auto rounded-md border border-zinc-700 bg-zinc-900/80">
             {searchResults.map((movie) => (
               <div
                 key={movie.id}
-                className="p-3 border-b cursor-pointer hover:bg-gray-100 flex gap-3"
+                className="flex cursor-pointer gap-3 border-b border-zinc-800 p-3 hover:bg-zinc-800"
                 onClick={() => handleMovieSelect(movie)}
               >
                 {movie.poster_path && (
@@ -202,18 +202,18 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
                   />
                 )}
                 <div className="flex-1">
-                  <h4 className="font-semibold text-sm text-black">
+                  <h4 className="text-sm font-semibold text-zinc-100">
                     {movie.title || movie.name}
                   </h4>
-                  <p className="text-xs text-gray-600 mb-1">
+                  <p className="mb-1 text-xs text-zinc-400">
                     {movie.release_date || movie.first_air_date}
                   </p>
                   {movie.vote_average && (
-                    <p className="text-xs text-yellow-600 font-semibold mb-1">
+                    <p className="mb-1 text-xs font-semibold text-amber-400">
                       ⭐ {movie.vote_average.toFixed(1)}/10
                     </p>
                   )}
-                  <p className="text-xs text-gray-700 line-clamp-2">
+                  <p className="line-clamp-2 text-xs text-zinc-300">
                     {movie.overview}
                   </p>
                 </div>
@@ -224,13 +224,13 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
         {/* Selected Movie Display */}
         {selectedMovie && (
-          <div className="mb-4 p-3 border rounded bg-green-50">
+          <div className="mb-4 rounded-md border border-zinc-700 bg-zinc-900 p-3">
             <div className="flex justify-between items-start mb-2">
-              <h3 className="font-semibold text-green-800">Selected:</h3>
+              <h3 className="font-semibold text-zinc-100">Selected</h3>
               <button
                 type="button"
                 onClick={clearSelection}
-                className="text-red-600 hover:text-red-800 text-sm"
+                className="text-sm text-rose-400 hover:text-rose-300"
               >
                 Clear Selection
               </button>
@@ -244,14 +244,14 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
                 />
               )}
               <div className="flex-1">
-                <h4 className="font-semibold text-sm">
+                <h4 className="text-sm font-semibold text-zinc-100">
                   {selectedMovie.title || selectedMovie.name}
                 </h4>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-zinc-400">
                   {selectedMovie.release_date || selectedMovie.first_air_date}
                 </p>
                 {selectedMovie.vote_average && (
-                  <p className="text-xs text-yellow-600 font-semibold mt-1">
+                  <p className="mt-1 text-xs font-semibold text-amber-400">
                     ⭐ {selectedMovie.vote_average.toFixed(1)}/10
                   </p>
                 )}
@@ -263,13 +263,13 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
         {/* Form Fields */}
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-white-700"
+          className="block text-sm font-medium text-zinc-200"
         >
           Title:
           <input
             type="text"
             placeholder="Enter Title"
-            className="mt-1 p-2 w-full border rounded text-black"
+            className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-900 p-2 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500"
             onChange={(e) => {
               e.stopPropagation();
               setTitle(e.target.value);
@@ -281,12 +281,12 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
         
         <label
           htmlFor="description"
-          className="block mt-4 text-sm font-medium text-white"
+          className="mt-4 block text-sm font-medium text-zinc-200"
         >
           Description:
           <textarea
             placeholder="Enter Description"
-            className="mt-1 p-2 w-full border rounded text-black"
+            className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-900 p-2 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500"
             rows="4"
             onChange={(e) => {
               e.stopPropagation();
@@ -299,13 +299,13 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
         
         <label
           htmlFor="imageUrl"
-          className="block mt-4 text-sm font-medium text-white-700"
+          className="mt-4 block text-sm font-medium text-zinc-200"
         >
           Image URL:
           <input
             type="text"
             placeholder="Enter the Image URL"
-            className="mt-1 p-2 w-full border rounded text-black"
+            className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-900 p-2 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500"
             onChange={(e) => {
               e.stopPropagation();
               setImageUrl(e.target.value);
@@ -317,12 +317,12 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
 
         <label
           htmlFor="watchStatusSelect"
-          className="block mt-4 text-sm font-medium text-white-700"
+          className="mt-4 block text-sm font-medium text-zinc-200"
         >
           Status:
           <select
             placeholder="in-progress, watchlist or completed"
-            className="mt-1 p-2 w-full border rounded text-black"
+            className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-900 p-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-500"
             onChange={(e) => {
               e.stopPropagation();
               handleStatusChange(e);
@@ -340,7 +340,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
         
         <div className="flex justify-end mt-4">
           <button
-            className="text-black bg-white px-4 py-2 rounded"
+            className="rounded-md border border-zinc-600 bg-transparent px-4 py-2 text-zinc-200 transition-colors hover:bg-zinc-800"
             type="button"
             onClick={(e) => {
               e.stopPropagation();
@@ -350,7 +350,7 @@ export default function AddTvShowForm({ onCancel, watchStatusDisplay }) {
             Cancel
           </button>
           <button
-            className="bg-white text-black px-4 py-2 ml-2 rounded"
+            className="ml-2 rounded-md bg-zinc-300 px-4 py-2 text-zinc-900 transition-colors hover:bg-zinc-200"
             type="submit"
           >
             Add

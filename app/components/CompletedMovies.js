@@ -194,8 +194,11 @@ export default async function CompletedMovies() {
     movies = tempMovies;
   }
 
+  const completedCount =
+    movies?.filter((item) => item.watchStatus === "completed").length ?? 0;
+
   return (
-    <CardContainer title="Completed Movies">
+    <CardContainer title="Completed Movies" count={completedCount}>
       <ShowList
         data={movies}
         watchStatusDisplay={"completed"}
