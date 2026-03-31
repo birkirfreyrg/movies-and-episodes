@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 
 export default function Card({
   id,
@@ -26,29 +25,36 @@ export default function Card({
   return (
     <div className="md:w-full lg:w-2/5" onClick={handleClick}>
       <Link href={`${pathname}/${id}`}>
-        <div className="border-stone h-56 flex overflow-hidden">
+        <div className="border-stone flex flex-col overflow-hidden md:h-56 md:flex-row">
           {imageUrl && (
-            <Image
-              className="h-full w-full object-contain bg-zinc-900 md:w-48 md:object-cover"
-              width={500}
-              height={500}
-              src={imageUrl}
-              alt={title}
-            />
+            <div className="relative h-64 bg-zinc-900 md:h-56 md:w-auto md:flex-none md:bg-transparent">
+              <img
+                className="h-full w-full object-contain md:w-auto"
+                src={imageUrl}
+                alt={title}
+              />
+              {rating !== undefined && rating !== null && (
+                <span className="md:hidden absolute bottom-2 right-2 rounded bg-black/70 px-2 py-1 text-yellow-400 text-sm font-semibold">
+                  ⭐ {rating.toFixed(1)}/10
+                </span>
+              )}
+            </div>
           )}
-          <div className="flex-grow flex flex-col justify-start">
-            <div className="hidden md:block p-1.5 mx-1 flex flex-col h-full">
-              <div className="font-bold text-xl mb-1 flex items-center justify-between flex-shrink-0">
+          <div className="hidden md:flex flex-grow flex-col justify-start">
+            <div className="p-2 md:p-1.5 mx-1 flex flex-col h-full">
+              <div className="font-bold text-base md:text-xl mb-1 flex items-center gap-2 flex-shrink-0">
                 <span className="line-clamp-1">{title}</span>
-                {rating !== undefined && rating !== null && (
-                  <span className="text-yellow-400 text-sm font-semibold ml-2 flex-shrink-0">
-                    ⭐ {rating.toFixed(1)}/10
-                  </span>
-                )}
               </div>
-              <div className="flex-grow overflow-hidden">
+              <div className="hidden md:block flex-grow overflow-hidden">
                 <p className="text-gray-200 text-base line-clamp-6">{description}</p>
               </div>
+              {rating !== undefined && rating !== null && (
+                <div className="hidden md:flex justify-end mt-1 flex-shrink-0">
+                  <span className="text-yellow-400 text-sm font-semibold">
+                    ⭐ {rating.toFixed(1)}/10
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>

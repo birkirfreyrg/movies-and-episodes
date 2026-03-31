@@ -10,7 +10,7 @@ export default function AddButtonCard({
   isEven,
 }) {
   const [showForm, setShowForm] = useState(false);
-  const cardClasses = `h-56 lg:h-64 w-full md:w-[48%] lg:w-2/5 flex rounded-2xl border border-dashed border-zinc-500/70 bg-zinc-900/70 shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-800/80 ${additionalClassName || ""}`;
+  const cardClasses = `h-64 md:h-56 lg:h-64 w-[92%] max-w-[26rem] md:w-full md:max-w-none lg:w-2/5 flex border-stone flex-col overflow-hidden bg-zinc-900/40 cursor-pointer transition-colors duration-200 hover:bg-zinc-800/60 ${additionalClassName || ""}`;
   const invisibleClass = `invisible ${cardClasses} `;
   const pathname = usePathname();
   const mediaTypeLabel = pathname === "/tvshows" ? "Add TV Show" : "Add Movie";
